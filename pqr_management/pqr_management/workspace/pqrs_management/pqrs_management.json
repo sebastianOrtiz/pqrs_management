@@ -1,0 +1,68 @@
+{
+ "charts": [],
+ "content": "[{\"id\":\"4iAPrRKfEV\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">PQRs management</span>\",\"col\":12}},{\"id\":\"ExVEjKSIbH\",\"type\":\"card\",\"data\":{\"card_name\":\"PQR\",\"col\":4}},{\"id\":\"A70ODa9I8a\",\"type\":\"card\",\"data\":{\"card_name\":\"Configuration\",\"col\":4}}]",
+ "creation": "2026-05-18 13:48:30.956204",
+ "custom_blocks": [],
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "for_user": "",
+ "hide_custom": 0,
+ "icon": "unhide",
+ "idx": 0,
+ "indicator_color": "green",
+ "is_hidden": 0,
+ "label": "PQRs management",
+ "links": [
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Configuration",
+   "link_count": 1,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "PQR Type",
+   "link_count": 0,
+   "link_to": "PQR Type",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "PQR",
+   "link_count": 1,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "PQR Entry",
+   "link_count": 0,
+   "link_to": "PQR Entry",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  }
+ ],
+ "modified": "2026-05-18 13:57:45.214113",
+ "modified_by": "Administrator",
+ "module": "Pqr Management",
+ "name": "PQRs management",
+ "number_cards": [],
+ "owner": "Administrator",
+ "parent_page": "",
+ "public": 1,
+ "quick_lists": [],
+ "roles": [],
+ "sequence_id": 31.0,
+ "shortcuts": [],
+ "title": "PQRs management"
+}

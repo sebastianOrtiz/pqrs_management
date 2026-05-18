@@ -1,0 +1,14 @@
+[
+ {
+  "doctype": "Role",
+  "role_name": "PQR Manager",
+  "name": "PQR Manager",
+  "desk_access": 1
+ },
+ {
+  "doctype": "Role",
+  "role_name": "PQR Agent",
+  "name": "PQR Agent",
+  "desk_access": 1
+ }
+]

@@ -1,14 +1,57 @@
 app_name = "pqr_management"
-app_title = "Pqr Management"
+app_title = "PQRs Management"
 app_publisher = "Nexora Online SAS"
-app_description = "Aplicacion enfocada en recepcion y gestion de PQRs"
+app_description = "Aplicación enfocada en recepción y gestión de PQRs (Peticiones, Quejas, Reclamos)"
 app_email = "sebastianortiz989@gmail.com"
 app_license = "mit"
 
 # Apps
 # ------------------
 
-# required_apps = []
+required_apps = ["common_configurations"]
+
+# Fixtures
+# --------
+fixtures = [
+	{
+		"dt": "Role",
+		"filters": [["name", "in", ["PQR Manager", "PQR Agent"]]],
+	},
+	{
+		"dt": "Tool Type",
+		"filters": [["app_name", "=", "pqr_management"]],
+	},
+	{
+		"dt": "Custom Field",
+		"filters": [["name", "in", [
+			"Service Portal Tool-pqr_allowed_types",
+			"Service Portal Tool-pqr_allow_anonymous",
+			"API Service-section_pqr",
+			"API Service-enable_create_pqr",
+		]]],
+	},
+	{
+		"dt": "PQR Type",
+		"filters": [["name", "in", [
+			"peticion", "queja", "reclamo",
+			"sugerencia", "felicitacion", "denuncia",
+		]]],
+	},
+]
+
+# Installation
+# ------------
+after_install = "pqr_management.install.after_install"
+
+# Permissions
+# -----------
+permission_query_conditions = {
+	"PQR Entry": "pqr_management.pqr_management.doctype.pqr_entry.pqr_entry.get_permission_query_conditions",
+}
+
+has_permission = {
+	"PQR Entry": "pqr_management.pqr_management.doctype.pqr_entry.pqr_entry.has_permission",
+}
 
 # Each item in the list will be shown as an app in the apps page
 # add_to_apps_screen = [

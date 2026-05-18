@@ -1,0 +1,68 @@
+[
+ {
+  "doctype": "PQR Type",
+  "name": "peticion",
+  "type_code": "peticion",
+  "label": "Petición",
+  "description": "Solicita información, gestión o acción de la entidad sobre un tema de tu interés.",
+  "icon": "MessageSquare",
+  "color": "#2563eb",
+  "display_order": 10,
+  "is_active": 1
+ },
+ {
+  "doctype": "PQR Type",
+  "name": "queja",
+  "type_code": "queja",
+  "label": "Queja",
+  "description": "Manifiesta tu inconformidad por la atención recibida o un servicio mal prestado.",
+  "icon": "AlertCircle",
+  "color": "#dc2626",
+  "display_order": 20,
+  "is_active": 1
+ },
+ {
+  "doctype": "PQR Type",
+  "name": "reclamo",
+  "type_code": "reclamo",
+  "label": "Reclamo",
+  "description": "Reporta una falla específica para que sea corregida o reparada.",
+  "icon": "AlertTriangle",
+  "color": "#ea580c",
+  "display_order": 30,
+  "is_active": 1
+ },
+ {
+  "doctype": "PQR Type",
+  "name": "sugerencia",
+  "type_code": "sugerencia",
+  "label": "Sugerencia",
+  "description": "Propone una mejora o idea que ayude a brindar un mejor servicio.",
+  "icon": "Lightbulb",
+  "color": "#ca8a04",
+  "display_order": 40,
+  "is_active": 1
+ },
+ {
+  "doctype": "PQR Type",
+  "name": "felicitacion",
+  "type_code": "felicitacion",
+  "label": "Felicitación",
+  "description": "Reconoce un buen servicio, atención destacada o experiencia positiva.",
+  "icon": "Heart",
+  "color": "#16a34a",
+  "display_order": 50,
+  "is_active": 1
+ },
+ {
+  "doctype": "PQR Type",
+  "name": "denuncia",
+  "type_code": "denuncia",
+  "label": "Denuncia",
+  "description": "Reporta una situación irregular, posible falta ética o presunto acto de corrupción.",
+  "icon": "ShieldAlert",
+  "color": "#7c3aed",
+  "display_order": 60,
+  "is_active": 1
+ }
+]

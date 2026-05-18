@@ -1,0 +1,22 @@
+[
+ {
+  "doctype": "Tool Type",
+  "name": "pqr",
+  "tool_name": "pqr",
+  "tool_label": "PQRs",
+  "app_name": "pqr_management",
+  "icon": "MessageSquare",
+  "description": "Permite a los ciudadanos enviar Peticiones, Quejas, Reclamos y otras retroalimentaciones",
+  "is_active": 1
+ },
+ {
+  "doctype": "Tool Type",
+  "name": "my_pqr",
+  "tool_name": "my_pqr",
+  "tool_label": "Mis PQRs",
+  "app_name": "pqr_management",
+  "icon": "Inbox",
+  "description": "Permite a los ciudadanos ver el estado de las PQR que han enviado",
+  "is_active": 1
+ }
+]

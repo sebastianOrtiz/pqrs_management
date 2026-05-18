@@ -1,0 +1,55 @@
+[
+ {
+  "doctype": "Custom Field",
+  "dt": "Service Portal Tool",
+  "fieldname": "pqr_allowed_types",
+  "fieldtype": "Table",
+  "label": "PQR Allowed Types",
+  "options": "PQR Tool Type",
+  "description": "Types of PQR shown in this tool (e.g. Petición, Queja, Reclamo)",
+  "insert_after": "is_enabled",
+  "depends_on": "eval:doc.tool_type=='pqr'",
+  "mandatory_depends_on": "eval:doc.tool_type=='pqr'",
+  "module": "Pqr Management",
+  "name": "Service Portal Tool-pqr_allowed_types",
+  "modified": "2026-05-18 00:00:00.000000"
+ },
+ {
+  "doctype": "Custom Field",
+  "dt": "Service Portal Tool",
+  "fieldname": "pqr_allow_anonymous",
+  "fieldtype": "Check",
+  "label": "Allow Anonymous PQR",
+  "description": "Allow citizens to submit PQR anonymously (without associating their User Contact)",
+  "default": "1",
+  "insert_after": "pqr_allowed_types",
+  "depends_on": "eval:doc.tool_type=='pqr'",
+  "module": "Pqr Management",
+  "name": "Service Portal Tool-pqr_allow_anonymous",
+  "modified": "2026-05-18 00:00:00.000000"
+ },
+ {
+  "doctype": "Custom Field",
+  "dt": "API Service",
+  "fieldname": "section_pqr",
+  "fieldtype": "Section Break",
+  "label": "PQR Configuration",
+  "insert_after": "enable_register_contact",
+  "module": "Pqr Management",
+  "name": "API Service-section_pqr",
+  "modified": "2026-05-18 00:00:00.000000"
+ },
+ {
+  "doctype": "Custom Field",
+  "dt": "API Service",
+  "fieldname": "enable_create_pqr",
+  "fieldtype": "Check",
+  "label": "Enable Create PQR",
+  "description": "Allow creating PQR entries via this API service",
+  "default": "0",
+  "insert_after": "section_pqr",
+  "module": "Pqr Management",
+  "name": "API Service-enable_create_pqr",
+  "modified": "2026-05-18 00:00:00.000000"
+ }
+]
