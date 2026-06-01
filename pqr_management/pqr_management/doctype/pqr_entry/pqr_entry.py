@@ -10,6 +10,7 @@ from frappe.utils import now_datetime
 class PQREntry(Document):
 	def validate(self):
 		self._validate_anonymous_consistency()
+		self._fill_submitter_from_user_contact()
 		self._auto_resolve_timestamp()
 
 	def _validate_anonymous_consistency(self):
@@ -22,6 +23,30 @@ class PQREntry(Document):
 			self.submitter_name = None
 			self.submitter_email = None
 			self.submitter_phone = None
+
+	def _fill_submitter_from_user_contact(self):
+		"""
+		If a user_contact is linked and submitter_* fields are empty,
+		auto-populate them from the User Contact document.
+		"""
+		if self.is_anonymous or not self.user_contact:
+			return
+
+		contact = frappe.db.get_value(
+			"User contact",
+			self.user_contact,
+			["full_name", "email", "phone_number"],
+			as_dict=True,
+		)
+		if not contact:
+			return
+
+		if not self.submitter_name:
+			self.submitter_name = contact.full_name
+		if not self.submitter_email:
+			self.submitter_email = contact.email
+		if not self.submitter_phone:
+			self.submitter_phone = contact.phone_number
 
 	def _auto_resolve_timestamp(self):
 		"""Set resolved_at when status moves to Resolved/Closed and it's empty."""

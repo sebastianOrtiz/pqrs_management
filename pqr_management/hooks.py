@@ -24,7 +24,7 @@ fixtures = [
 	{
 		"dt": "Custom Field",
 		"filters": [["name", "in", [
-			"Service Portal Tool-pqr_allowed_types",
+			"Service Portal Tool-pqr_type_set",
 			"Service Portal Tool-pqr_allow_anonymous",
 			"API Service-section_pqr",
 			"API Service-enable_create_pqr",

@@ -31,11 +31,11 @@ def _install_custom_fields():
 	fields = [
 		{
 			"dt": "Service Portal Tool",
-			"fieldname": "pqr_allowed_types",
-			"fieldtype": "Table",
-			"options": "PQR Tool Type",
-			"label": "PQR Allowed Types",
-			"description": "Types of PQR shown in this tool",
+			"fieldname": "pqr_type_set",
+			"fieldtype": "Link",
+			"options": "PQR Type Set",
+			"label": "PQR Type Set",
+			"description": "Set of PQR types shown in this tool",
 			"insert_after": "is_enabled",
 			"depends_on": "eval:doc.tool_type=='pqr'",
 			"mandatory_depends_on": "eval:doc.tool_type=='pqr'",
@@ -47,7 +47,7 @@ def _install_custom_fields():
 			"label": "Allow Anonymous PQR",
 			"description": "Allow citizens to submit PQR anonymously",
 			"default": "1",
-			"insert_after": "pqr_allowed_types",
+			"insert_after": "pqr_type_set",
 			"depends_on": "eval:doc.tool_type=='pqr'",
 		},
 		{
