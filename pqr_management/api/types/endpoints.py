@@ -1,7 +1,9 @@
 """
 PQR Type catalog endpoints.
 
-Returns the list of active PQR Types configured in a given Service Portal Tool.
+Returns the list of active PQR Types configured for a given Service Portal Tool.
+The tool references a `PQR Type Set` (regular DocType) which contains the actual
+list of types to expose.
 """
 
 import frappe
@@ -14,20 +16,19 @@ from common_configurations.api.shared import check_rate_limit, sanitize_string
 @frappe.whitelist(allow_guest=True, methods=["GET"])
 def get_tool_types(tool_name: str) -> Dict[str, Any]:
 	"""
-	Get the PQR Types enabled for a specific Service Portal Tool, plus
-	whether anonymous submissions are allowed for that tool.
+	Get the PQR Types enabled for a specific Service Portal Tool,
+	plus whether anonymous submissions are allowed.
 
-	Public endpoint (allow_guest) because the citizen may not be logged in
-	when the portal renders the tool.
+	Public endpoint (allow_guest) — the citizen may not be logged in.
 
 	Args:
-		tool_name: name of the Service Portal Tool (child row "name")
+		tool_name: name of the Service Portal Tool row
 
 	Returns:
 		{
 			"allow_anonymous": bool,
 			"types": [
-				{name, label, description, icon, color, display_order},
+				{name, type_code, label, description, icon, color, display_order},
 				...
 			]
 		}
@@ -41,7 +42,7 @@ def get_tool_types(tool_name: str) -> Dict[str, Any]:
 	tool = frappe.db.get_value(
 		"Service Portal Tool",
 		tool_name,
-		["tool_type", "pqr_allow_anonymous"],
+		["tool_type", "pqr_type_set", "pqr_allow_anonymous"],
 		as_dict=True,
 	)
 	if not tool:
@@ -50,10 +51,23 @@ def get_tool_types(tool_name: str) -> Dict[str, Any]:
 	if tool.tool_type != "pqr":
 		frappe.throw(_("This tool is not a PQR tool"), frappe.ValidationError)
 
-	# Get enabled types in this tool's table
+	if not tool.pqr_type_set:
+		return {"allow_anonymous": bool(tool.pqr_allow_anonymous), "types": []}
+
+	# Verify the set is active
+	set_info = frappe.db.get_value(
+		"PQR Type Set",
+		tool.pqr_type_set,
+		["name", "is_active"],
+		as_dict=True,
+	)
+	if not set_info or not set_info.is_active:
+		return {"allow_anonymous": bool(tool.pqr_allow_anonymous), "types": []}
+
+	# Get enabled types from the set
 	rows = frappe.get_all(
-		"PQR Tool Type",
-		filters={"parent": tool_name, "is_enabled": 1},
+		"PQR Type Set Item",
+		filters={"parent": tool.pqr_type_set, "is_enabled": 1},
 		fields=["pqr_type"],
 	)
 	type_names = [r.pqr_type for r in rows if r.pqr_type]
@@ -76,7 +90,7 @@ def get_tool_types(tool_name: str) -> Dict[str, Any]:
 
 @frappe.whitelist(allow_guest=True, methods=["GET"])
 def get_all_types() -> List[Dict[str, Any]]:
-	"""Get all active PQR Types (used for internal selectors)."""
+	"""Get all active PQR Types (for internal selectors)."""
 	check_rate_limit("pqr_get_all_types", limit=60, seconds=60)
 
 	return frappe.get_all(

@@ -4,5 +4,5 @@
 from frappe.model.document import Document
 
 
-class PQRToolType(Document):
+class PQRTypeSet(Document):
 	pass

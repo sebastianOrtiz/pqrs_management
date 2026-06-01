@@ -112,14 +112,18 @@
   },
   {
    "depends_on": "eval:!doc.is_anonymous",
-   "description": "Submitter full name (only if not anonymous)",
+   "description": "Submitter full name (auto-filled from User Contact if linked)",
+   "fetch_from": "user_contact.full_name",
+   "fetch_if_empty": 1,
    "fieldname": "submitter_name",
    "fieldtype": "Data",
    "label": "Submitter Name"
   },
   {
    "depends_on": "eval:!doc.is_anonymous",
-   "description": "Submitter email for contact (optional, only if not anonymous)",
+   "description": "Submitter email (auto-filled from User Contact if linked)",
+   "fetch_from": "user_contact.email",
+   "fetch_if_empty": 1,
    "fieldname": "submitter_email",
    "fieldtype": "Data",
    "label": "Submitter Email",
@@ -127,7 +131,9 @@
   },
   {
    "depends_on": "eval:!doc.is_anonymous",
-   "description": "Submitter phone (optional)",
+   "description": "Submitter phone (auto-filled from User Contact if linked)",
+   "fetch_from": "user_contact.phone_number",
+   "fetch_if_empty": 1,
    "fieldname": "submitter_phone",
    "fieldtype": "Data",
    "label": "Submitter Phone"
