@@ -39,6 +39,10 @@ fixtures = [
 	},
 ]
 
+# Declarative config import/export
+# ---------------------------------
+portal_config_providers = ["pqr_management.config_providers.pqr_provider.PqrProvider"]
+
 # Installation
 # ------------
 after_install = "pqr_management.install.after_install"
