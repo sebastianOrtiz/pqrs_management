@@ -158,7 +158,7 @@ has_permission = {
 # ------------------
 # See frappe.core.notifications.get_notification_config
 
-# notification_config = "pqr_management.notifications.get_notification_config"
+notification_config = "pqr_management.pqr_management.notifications.get_notification_config"
 
 # Permissions
 # -----------
