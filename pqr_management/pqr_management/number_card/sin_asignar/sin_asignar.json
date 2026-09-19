@@ -1,0 +1,17 @@
+{
+ "color": "#FF5858",
+ "docstatus": 0,
+ "doctype": "Number Card",
+ "document_type": "PQR Entry",
+ "filters_json": "[[\"PQR Entry\",\"assigned_to\",\"=\",\"\"],[\"PQR Entry\",\"status\",\"in\",[\"New\",\"In Review\",\"In Process\"]]]",
+ "function": "Count",
+ "is_public": 1,
+ "is_standard": 1,
+ "label": "Sin asignar",
+ "module": "Pqr Management",
+ "name": "Sin asignar",
+ "owner": "Administrator",
+ "show_percentage_stats": 1,
+ "stats_time_interval": "Monthly",
+ "type": "Document Type"
+}

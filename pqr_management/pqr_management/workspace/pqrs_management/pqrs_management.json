@@ -1,6 +1,19 @@
 {
- "charts": [],
- "content": "[{\"id\":\"4iAPrRKfEV\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">PQRs management</span>\",\"col\":12}},{\"id\":\"ExVEjKSIbH\",\"type\":\"card\",\"data\":{\"card_name\":\"PQR\",\"col\":4}},{\"id\":\"A70ODa9I8a\",\"type\":\"card\",\"data\":{\"card_name\":\"Configuraci\u00f3n\",\"col\":4}}]",
+ "charts": [
+  {
+   "chart_name": "PQR por Estado",
+   "label": "PQR por Estado"
+  },
+  {
+   "chart_name": "PQR por Tipo",
+   "label": "PQR por Tipo"
+  },
+  {
+   "chart_name": "PQR por Responsable",
+   "label": "PQR por Responsable"
+  }
+ ],
+ "content": "[{\"id\":\"4iAPrRKfEV\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">PQRs management</span>\",\"col\":12}},{\"id\":\"ExVEjKSIbH\",\"type\":\"card\",\"data\":{\"card_name\":\"PQR\",\"col\":4}},{\"id\":\"A70ODa9I8a\",\"type\":\"card\",\"data\":{\"card_name\":\"Configuraci\u00f3n\",\"col\":4}},{\"id\":\"kpi1\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Indicadores</span>\",\"col\":12}},{\"id\":\"kpi2\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"PQR Abiertas\",\"col\":3}},{\"id\":\"kpi3\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Resueltas\",\"col\":3}},{\"id\":\"kpi4\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Sin asignar\",\"col\":3}},{\"id\":\"kpi5\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Gr\u00e1ficos</span>\",\"col\":12}},{\"id\":\"kpi6\",\"type\":\"chart\",\"data\":{\"chart_name\":\"PQR por Estado\",\"col\":6}},{\"id\":\"kpi7\",\"type\":\"chart\",\"data\":{\"chart_name\":\"PQR por Tipo\",\"col\":6}},{\"id\":\"kpi8\",\"type\":\"chart\",\"data\":{\"chart_name\":\"PQR por Responsable\",\"col\":12}}]",
  "creation": "2026-05-18 13:48:30.956204",
  "custom_blocks": [],
  "docstatus": 0,
@@ -62,11 +75,24 @@
    "type": "Link"
   }
  ],
- "modified": "2026-05-18 15:16:27.340604",
+ "modified": "2026-09-19 12:00:00.000000",
  "modified_by": "Administrator",
  "module": "Pqr Management",
  "name": "PQRs management",
- "number_cards": [],
+ "number_cards": [
+  {
+   "number_card_name": "PQR Abiertas",
+   "label": "PQR Abiertas"
+  },
+  {
+   "number_card_name": "Resueltas",
+   "label": "Resueltas"
+  },
+  {
+   "number_card_name": "Sin asignar",
+   "label": "Sin asignar"
+  }
+ ],
  "owner": "Administrator",
  "parent_page": "",
  "public": 1,

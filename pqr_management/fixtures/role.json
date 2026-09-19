@@ -10,5 +10,11 @@
   "role_name": "PQR Agent",
   "name": "PQR Agent",
   "desk_access": 1
+ },
+ {
+  "doctype": "Role",
+  "role_name": "PQR Supervisor",
+  "name": "PQR Supervisor",
+  "desk_access": 1
  }
 ]

@@ -39,6 +39,10 @@ fixtures = [
 	},
 ]
 
+# Declarative config import/export
+# ---------------------------------
+portal_config_providers = ["pqr_management.config_providers.pqr_provider.PqrProvider"]
+
 # Installation
 # ------------
 after_install = "pqr_management.install.after_install"
@@ -154,7 +158,7 @@ has_permission = {
 # ------------------
 # See frappe.core.notifications.get_notification_config
 
-# notification_config = "pqr_management.notifications.get_notification_config"
+notification_config = "pqr_management.pqr_management.notifications.get_notification_config"
 
 # Permissions
 # -----------

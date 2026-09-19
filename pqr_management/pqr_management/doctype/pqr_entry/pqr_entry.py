@@ -13,6 +13,35 @@ class PQREntry(Document):
 		self._fill_submitter_from_user_contact()
 		self._auto_resolve_timestamp()
 
+	def after_insert(self):
+		self._notify_assignee_on_assignment(is_new=True)
+
+	def on_update(self):
+		self._notify_assignee_on_assignment(is_new=False)
+
+	def _notify_assignee_on_assignment(self, is_new: bool):
+		"""
+		Create an in-app (bell) notification for the user a PQR case is
+		assigned to, when the case is created already assigned (`is_new`) or
+		its `assigned_to` changes on update. Runs in a background job; skips
+		when there's nobody assigned or the assignment didn't change.
+		"""
+		if not self.assigned_to:
+			return
+
+		if not is_new:
+			before = self.get_doc_before_save()
+			if not before or before.assigned_to == self.assigned_to:
+				return
+
+		frappe.enqueue(
+			"pqr_management.pqr_management.notifications.pqr_entry.notify_assignee",
+			entry_name=self.name,
+			actor=frappe.session.user,
+			queue="default",
+			enqueue_after_commit=True,
+		)
+
 	def _validate_anonymous_consistency(self):
 		"""
 		If marked as anonymous, clear submitter fields and unlink user_contact.
@@ -66,7 +95,10 @@ def get_permission_query_conditions(user):
 
 	roles = frappe.get_roles(user)
 
-	if "System Manager" in roles or "PQR Manager" in roles:
+	# "PQR Supervisor" is a system-user oversight role: sees every PQR Entry,
+	# but WITHOUT configuration permissions (not granted on PQR Settings /
+	# PQR Type / config doctypes).
+	if "System Manager" in roles or "PQR Manager" in roles or "PQR Supervisor" in roles:
 		return ""
 
 	if "PQR Agent" in roles:
@@ -83,6 +115,10 @@ def has_permission(doc, ptype, user):
 
 	if "System Manager" in roles or "PQR Manager" in roles:
 		return True
+
+	# Supervisor: full case visibility and management, but cannot delete.
+	if "PQR Supervisor" in roles:
+		return ptype != "delete"
 
 	if "PQR Agent" in roles:
 		return doc.assigned_to == user
