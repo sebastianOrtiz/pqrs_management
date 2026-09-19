@@ -1,0 +1,18 @@
+{
+ "chart_name": "PQR por Responsable",
+ "chart_type": "Group By",
+ "docstatus": 0,
+ "doctype": "Dashboard Chart",
+ "document_type": "PQR Entry",
+ "filters_json": "[]",
+ "group_by_based_on": "assigned_to",
+ "group_by_type": "Count",
+ "is_public": 1,
+ "is_standard": 1,
+ "module": "Pqr Management",
+ "name": "PQR por Responsable",
+ "number_of_groups": 0,
+ "owner": "Administrator",
+ "timeseries": 0,
+ "type": "Bar"
+}
