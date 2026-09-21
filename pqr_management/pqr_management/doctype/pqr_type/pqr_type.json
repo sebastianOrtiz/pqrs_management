@@ -15,7 +15,9 @@
   "color",
   "display_order",
   "section_description",
-  "description"
+  "description",
+  "section_questions",
+  "question_set"
  ],
  "fields": [
   {
@@ -83,6 +85,19 @@
    "fieldtype": "Small Text",
    "label": "Description",
    "translatable": 1
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "section_questions",
+   "fieldtype": "Section Break",
+   "label": "Questions"
+  },
+  {
+   "description": "Overrides the tool's default question set for this PQR type. Leave empty to keep using the tool-level question set.",
+   "fieldname": "question_set",
+   "fieldtype": "Link",
+   "label": "Question Set",
+   "options": "Portal Question Set"
   }
  ],
  "index_web_pages_for_search": 1,

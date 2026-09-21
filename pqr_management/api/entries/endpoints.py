@@ -20,6 +20,7 @@ from common_configurations.api.shared import (
 	get_current_user_contact,
 	sanitize_string,
 )
+from common_configurations.api.questions import parse_answers, compose_context
 
 
 # ===================
@@ -110,7 +111,8 @@ def _build_pqr_entry(
 def create_entry_from_portal(
 	pqr_type: str,
 	subject: str,
-	description: str,
+	description: Optional[str] = None,
+	answers: Optional[str] = None,
 	is_anonymous: int = 0,
 	submitter_name: Optional[str] = None,
 	submitter_email: Optional[str] = None,
@@ -125,12 +127,26 @@ def create_entry_from_portal(
 	- If is_anonymous=1 → do NOT associate user_contact (even if token present)
 	- If no token → treated as anonymous
 
+	Description / dynamic questions:
+	- If `answers` is sent (JSON string, `[{answer_key, question, answer}]`,
+	  the shape produced by the tool/type `question_set`), it is composed
+	  into the `description` field via `compose_context`, taking precedence
+	  over a plain-text `description`.
+	- Otherwise, `description` is used as-is (previous behavior).
+	- At least one of `description`/`answers` must yield non-empty content.
+
 	Rate limit: 5 per minute per IP. Honeypot protected.
 	"""
 	check_rate_limit("pqr_create_entry", limit=5, seconds=60)
 	check_honeypot(honeypot)
 
 	is_anonymous_bool = bool(int(is_anonymous)) if is_anonymous else False
+
+	parsed_answers = parse_answers(answers) if answers else []
+	if parsed_answers:
+		composed_context = compose_context(parsed_answers)
+		if composed_context:
+			description = composed_context
 
 	_validate_pqr_inputs(pqr_type, subject, description)
 

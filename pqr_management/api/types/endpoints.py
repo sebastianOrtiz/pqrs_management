@@ -11,6 +11,7 @@ from frappe import _
 from typing import List, Dict, Any
 
 from common_configurations.api.shared import check_rate_limit, sanitize_string
+from common_configurations.api.questions import resolve_questions
 
 
 @frappe.whitelist(allow_guest=True, methods=["GET"])
@@ -78,9 +79,23 @@ def get_tool_types(tool_name: str) -> Dict[str, Any]:
 	types_data = frappe.get_all(
 		"PQR Type",
 		filters={"name": ["in", type_names], "is_active": 1},
-		fields=["name", "type_code", "label", "description", "icon", "color", "display_order"],
+		fields=[
+			"name",
+			"type_code",
+			"label",
+			"description",
+			"icon",
+			"color",
+			"display_order",
+			"question_set",
+		],
 		order_by="display_order asc",
 	)
+
+	# Per-type question override: resolve_questions([]) when the type has no
+	# question_set configured, so the front falls back to the tool-level set.
+	for type_row in types_data:
+		type_row["questions"] = resolve_questions(type_row.pop("question_set", None))
 
 	return {
 		"allow_anonymous": bool(tool.pqr_allow_anonymous),
